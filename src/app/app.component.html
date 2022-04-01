@@ -2,26 +2,34 @@
   <ion-menu side="start" contentId="main">
     <ion-header>
       <ion-toolbar>
-        <ion-title>
-          AmazonasBnB
-        </ion-title>
+        <ion-title> AmazonasBnB </ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
       <ion-list>
-        <ion-item lines="none">
-          <ion-icon name="business" color="primary" slot="start"></ion-icon>
-          <ion-label>Descobrir lugares</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="checkbox-outline" color="primary" slot="start"></ion-icon>
-          <ion-label>Suas reservas</ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-icon name="exit" color="primary" slot="start"></ion-icon>
-          <ion-label>Sair</ion-label>
-        </ion-item>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/places/tabs/discover">
+            <ion-icon name="business" color="primary" slot="start"></ion-icon>
+            <ion-label>Descobrir lugares</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/bookings">
+            <ion-icon
+              name="checkbox-outline"
+              color="primary"
+              slot="start"
+            ></ion-icon>
+            <ion-label>Suas reservas</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" (click)="onLogout()" button>
+            <ion-icon name="exit" color="primary" slot="start"></ion-icon>
+            <ion-label>Sair</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>
