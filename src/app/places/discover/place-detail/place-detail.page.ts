@@ -28,14 +28,25 @@ export class PlaceDetailPage implements OnInit {
       }
       this.place = this.placesService.getPlace(paramMap.get('placeId'));
       console.log(this.place);
-
     });
   }
 
   onBookPlace() {
     //.this.navCtrl.navigateBack('/places/tabs/discover');
-    this.modal.create({component: CreateBookingComponent}).then(modalEl => {
-      modalEl.present();
-    });
+    this.modal
+      .create({
+        component: CreateBookingComponent,
+        componentProps: { selectedPlace: this.place },
+      })
+      .then((modalEl) => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then((resData) => {
+        console.log(resData.data, resData.role);
+        if (resData.role === 'confirm') {
+          console.log('ok');
+        }
+      });
   }
 }
