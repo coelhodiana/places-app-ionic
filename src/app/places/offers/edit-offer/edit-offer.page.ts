@@ -20,13 +20,12 @@ export class EditOfferPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((paramMap) => {
+    this.route.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('placeId')) {
         this.navCtrl.navigateBack('/places/tabs/offers');
         return;
       }
       this.place = this.placesService.getPlace(paramMap.get('placeId'));
-      console.log(this.place);
     });
   }
 }
