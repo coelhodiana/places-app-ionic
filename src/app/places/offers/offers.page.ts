@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonItemSliding, MenuController } from '@ionic/angular';
 
 import { Place } from './../place.model';
 import { PlacesService } from './../places.service';
@@ -13,7 +14,7 @@ export class OffersPage implements OnInit {
 
   loadedPlaces: Place[];
 
-  constructor(private placesService: PlacesService, private menu: MenuController) { }
+  constructor(private placesService: PlacesService, private menu: MenuController, private router: Router) { }
 
   ngOnInit() {
     this.loadedPlaces = this.placesService.places;
@@ -24,5 +25,9 @@ export class OffersPage implements OnInit {
     this.menu.open('first');
   }
 
+  onEdit(id: string, slidingItem: IonItemSliding) {
+    slidingItem.close();
+    this.router.navigateByUrl(`/places/tabs/offers/edit/${id}`);
 
+  }
 }
