@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage implements OnInit {
+  isLoading = false;
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -16,8 +17,14 @@ export class AuthPage implements OnInit {
   }
 
   onLogin() {
+    this.isLoading = true;
+
     this.auth.login();
-    this.router.navigateByUrl('/places/tabs/discover');
+
+    setTimeout(()=>{
+      this.isLoading = false;
+      this.router.navigateByUrl('/places/tabs/discover');
+    }, 1500);
   }
 
 }
